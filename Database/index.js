@@ -16,6 +16,7 @@ try{
     catch (err){
     console.log(err);
 }
+connection.end();
 
 
 let  getRandomUser = () => {
