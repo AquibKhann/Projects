@@ -24,7 +24,7 @@ const connection = mysql.createConnection({
   };
 
 
-
+//Home route
 app.get("/", (req,res)=> {
   let q = `SELECT count(*) FROM user`;
   try{
@@ -38,6 +38,24 @@ app.get("/", (req,res)=> {
     console.log(err);
     res.send("Some error in database");
 }
+});
+
+//Show Route
+
+app.get("/user",(req,res) =>{
+  let q = `SELECT * FROM user`;
+
+  try{
+    connection.query(q, (err , users) => {
+        if(err) throw err;
+    res.render("showusers.ejs", {users});
+    });
+}
+    catch (err){
+    console.log(err);
+    res.send("Some error in database");
+}
+
 });
 
 app.listen("8080", ()=>{
